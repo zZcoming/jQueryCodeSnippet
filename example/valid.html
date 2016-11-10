@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Validate</title>
+<meta charset="utf-8">
+<script type="text/javascript" src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+</head>
+<body>
+
+input a number: <input type="text">
+
+<script type="text/javascript" src="../js/valid.js"></script>
+<script type="text/javascript">
+$(function() {
+	// 输入框修改时验证
+	$('input').on('change', function() {
+		validate();
+	});
+	$('input').on('keyup', function() {
+		validate();
+	});
+});
+
+// 验证
+function validate() {
+	var input = $('input');
+	var num = input.val();
+	console.log(num);
+	// 大于0
+	if (num > 0) {
+		valid.moreThanZero = true;
+		// 小于10
+		if (num < 10) {
+			valid.lessThanTen = true;
+		} else {
+			valid.lessThanTen = false;
+		}
+	} else {
+		valid.moreThanZero = false;
+	}
+	cssValid(input, valid);
+}
+
+// 改变样式
+function cssValid(input, valid) {
+	if (valid.isValid()) {
+		input.css('border', '2px solid green');
+	} else {
+		input.css('border', '2px solid red');
+	}
+}
+</script>
+</body>
+</html>
